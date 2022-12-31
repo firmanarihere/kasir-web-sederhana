@@ -29,3 +29,24 @@ if (isset($_POST['login'])) {
         ';
     }
 }
+
+
+if (isset($_POST['tambahbarang'])) {
+    $productname = $_POST['nama-barang'];
+    $description = $_POST['deskripsi'];
+    $price = $_POST['harga'];
+    $qty = $_POST['qty'];
+
+    $insert = mysqli_query($con, "insert into product (	product_name, description,price,stock) 
+    values ('$productname', '$description', '$price', '$qty')");
+
+    if ($insert) {
+        header('location:stock.php');
+    } else {
+        echo '
+        <script>alert("Gagal menambah barang baru");
+        window.location.href="stock.php"        
+        </script>
+        ';
+    }
+}
